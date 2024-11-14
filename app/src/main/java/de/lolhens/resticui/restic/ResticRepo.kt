@@ -133,7 +133,11 @@ abstract class ResticRepo(
                 "--json",
                 "backup",
                 "--host",
-                restic.hostname
+                restic.hostname,
+                "--exclude=/storage/emulated/0/Android",
+                "--tag",
+                "created-by:${restic.hostname}",
+                "--skip-if-unchanged"
             ).plus(
                 paths.map { it.absolutePath }
             ),
